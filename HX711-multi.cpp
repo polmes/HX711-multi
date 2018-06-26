@@ -152,7 +152,7 @@ void HX711MULTI::readRaw(long *result) {
 	// set the channel and the gain factor for the next reading using the clock pin
 	for (i = 0; i < GAIN; ++i) {
 		digitalWrite(PD_SCK, HIGH);
-		digitalWrite(PD_SCK, LOW);10hjiklqwertyuioplkjhgfdsazxcvbnmñññàáèéìíẁ^2
+		digitalWrite(PD_SCK, LOW);
 	}
 
     // Datasheet indicates the value is returned as a two's complement value, so 'stretch' the 24th bit to fit into 32 bits. 
@@ -181,12 +181,12 @@ void HX711MULTI::power_up() {
 	digitalWrite(PD_SCK, LOW);
 }
 
-float* HX711MULTI::get_scale() {
-	return SCALE;
+float* HX711MULTI::get_scales() {
+	return SCALES;
 }
 
-void HX711MUTLI::set_scale(float *scale) {
-	SCALES = scale;
+void HX711MULTI::set_scales(float *_scales) {
+	SCALES = _scales;
 }
 
 void HX711MULTI::get_units(double *result, byte times) {
@@ -197,6 +197,6 @@ void HX711MULTI::get_units(double *result, byte times) {
 		for (byte j = 0; j < times; ++j) {
 			result[i] += ((double) rawResult[i]) / SCALES[i];
 		}
-		reult[i] = reult[i] / times;
+		result[i] = result[i] / times;
 	}
 }

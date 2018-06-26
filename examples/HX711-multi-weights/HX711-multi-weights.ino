@@ -16,13 +16,13 @@ double weights[N];
 float measurements[N] = {1.0, 1.0, 1.0}; // measured SCALES parameters
 
 HX711MULTI scales(N, DOUTS, CLK);
-scales.set_scale(measurements);
 
 void setup() {
 	Serial.begin(115200);
 	Serial.flush();
 	
 	tare();
+	scales.set_scales(measurements);
 }
 
 void tare() {
@@ -46,7 +46,7 @@ void sendRawData() {
 void sendWeightData() {
 	scales.get_units(weights);
 	// scales.get_units(weights, 5) // to average 5 measurements
-	for (int i = 0; i scales.get_count(); ++i) {
+	for (int i = 0; i < scales.get_count(); ++i) {
 		Serial.print(-weights[i]);
 		Serial.print((i != scales.get_count() - 1) ? "\t" : "\n");
 	}
@@ -59,7 +59,7 @@ void loop() {
 	Serial.println();
 
 	Serial.println("WEIGHT DATA BELOW");
-	sendData();
+	sendWeightData();
 	Serial.println();
 
 	// On serial data (any data), re-tare
