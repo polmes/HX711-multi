@@ -64,7 +64,7 @@
 			// NEW FEATURES
 			float* get_scales();
 			void set_scales(float *_scales);
-			void get_units(double *result = NULL, byte times = 1);
+			void get_units(double *result = NULL);
 
 	};
 #endif /* HX711_MULTI_h */

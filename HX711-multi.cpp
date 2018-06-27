@@ -189,14 +189,10 @@ void HX711MULTI::set_scales(float *_scales) {
 	SCALES = _scales;
 }
 
-void HX711MULTI::get_units(double *result, byte times) {
+void HX711MULTI::get_units(double *result) {
 	long int rawResult[COUNT];
 	read(rawResult);
 	for (int i = 0; i < COUNT; ++i) {
-		result[i] = 0.00;
-		for (byte j = 0; j < times; ++j) {
-			result[i] += ((double) rawResult[i]) / SCALES[i];
-		}
-		result[i] = result[i] / times;
+		result[i] = ((double) rawResult[i]) / SCALES[i];
 	}
 }

@@ -45,7 +45,6 @@ void sendRawData() {
 
 void sendWeightData() {
 	scales.get_units(weights);
-	// scales.get_units(weights, 5) // to average 5 measurements
 	for (int i = 0; i < scales.get_count(); ++i) {
 		Serial.print(-weights[i]);
 		Serial.print((i != scales.get_count() - 1) ? "\t" : "\n");
